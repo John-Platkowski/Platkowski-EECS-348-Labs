@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>Practice 2</head>
+  <body>
+      <h1 class="title">CSS Font Control </h1>
+      <p id="paragraph" style="border-style: solid">This is some craaaaaazy dummy text right here.</p>
+      Border R
+      <input type="text" value="">
+      <br>
+      Border G
+      <input type="text" value="">
+      <br>
+      Border B
+      <input type="text" value="">
+      <br>
+      Border Thickness
+      <input type="text" value="">
+      <br>
+      Text Background R
+      <input type="text" value="">
+      <br>
+      Text Background G
+      <input type="text" value="">
+      <br>
+      Text Background B
+      <input type="text" value="">
+      <br>
+      <button onclick="changeRGB()">Apply changes</button>
+      <script>
+        function changeRGB()
+        {
+          let inputs = document.getElementsByTagName("input");
+          let bR = inputs[0].value;
+          let bG = inputs[1].value;
+          let bB= inputs[2].value;
+          let bWidth = inputs[3].value;
+          let bgR = inputs[4].value;
+          let bgG = inputs[5].value;
+          let bgB = inputs[6].value;
+          let text = document.getElementById("paragraph");
+          text.style.borderColor = `rgb(${bR},${bG},${bB})`;
+          text.style.borderWidth = bWidth+'px';
+          text.style.backgroundColor = `rgb(${bgR},${bgG},${bgB})`;
+          
+        }
+      </script>
+  </body>
+</html>
