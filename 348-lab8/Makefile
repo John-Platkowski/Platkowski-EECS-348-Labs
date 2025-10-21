@@ -2,15 +2,16 @@ CC=gcc
 
 CFLAGS= -c -Wall
 
-OBJECTS= football.o temperature.o
+all: football temperature
 
-all:prog
+football: football.o
+	$(CC) football.o -o football
 
-prog: $(OBJECTS)
-	$(CC) $(OBJECTS) -o $@
+temperature: temperature.o
+	$(CC) temperature.o -o temperature
 
 %.o: %.c
-	$(CC) $(CFLAGS) $<
+	$(CC) $(CFLAGS) $
 
 clean:
-	rm -rf *.o prog
+	rm -rf *.o football temperature
