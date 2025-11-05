@@ -67,10 +67,10 @@ int main()
                     }
                 }
 
-                // If the current char is . and there isn't a decimal yet and that there is a value following the decimal
-                if (right[i] == '.' && rightDecimalIndex == -1 && right[i + 1] != '\0') {
+                // If the current char is . and there isn't a decimal yet and that there is a value preceding + following the decimal
+                if (right[i] == '.' && rightDecimalIndex == -1 && right[i + 1] != '\0' && rightLength > 0) {
                     // Set the index to this one
-                    rightDecimalIndex = i;
+                    rightDecimalIndex = rightLength;
                     continue;
                 } else if (right[i] < '0' || right[i] > '9') {
                     // Break the loop here, this line can't be computed
@@ -92,11 +92,11 @@ int main()
                     }
                 }
 
-                // If the current char is . and there isn't a decimal yet and that there is a value following the decimal
-                if (left[i] == '.' && leftDecimalIndex == -1 && left[i + 1] != '\0') 
+                // If the current char is . and there isn't a decimal yet and that there is a value preceding + following the decimal
+                if (left[i] == '.' && leftDecimalIndex == -1 && left[i + 1] != '\0' && leftLength > 0) 
                 {
                     // Set the index to this one
-                    leftDecimalIndex = i;
+                    leftDecimalIndex = leftLength;
                     continue;
                 } else if (left[i] < '0' || left[i] > '9') {
                     // Break the loop here, this line can't be computed
@@ -236,11 +236,13 @@ int main()
                 // Skip signs if present
                 int leftStart = (normLeft[0] == '-' || normLeft[0] == '+') ? 1 : 0;
                 int rightStart = (normRight[0] == '-' || normRight[0] == '+') ? 1 : 0;
-                char lDigit = normLeft[leftStart + compareIndex];
-                char rDigit = normRight[rightStart + compareIndex];
+                
                 while (lDigit != '\0' && rDigit != '\0')
                 {
-                    if (lDigit == '.')
+                    char lDigit = normLeft[leftStart + compareIndex];
+                    char rDigit = normRight[rightStart + compareIndex];
+
+                    if (lDigit == '.' && rDigit == '.')
                     {
                         compareIndex++;
                         continue;
@@ -344,6 +346,7 @@ int main()
                         borrow = 0;
                     }
                     result[resultIndex] = diff + '0';
+                    resultIndex++;
                 }
             }
             // If carry remains
@@ -373,7 +376,7 @@ int main()
                 result[0] = '-';
                 resultIndex++;
             }
-            
+
             result[resultIndex] = '\0';
 
             std::cout << result << std::endl;
