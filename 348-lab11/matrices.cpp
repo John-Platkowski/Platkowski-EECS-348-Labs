@@ -53,9 +53,7 @@ public:
     Matrix swapRows(int row1=0, int row2=0) const
     {
         Matrix output = *this;
-        int* temp = output[row1];
-        output[row1] = output[row2];
-        output[row2] = temp;
+        swap(output.data[row1], output.data[row2]);
         return output;  
     }
     // Takes two column indices, returns a new matrix with the swapped columns
@@ -64,9 +62,7 @@ public:
         Matrix output = *this;
         for (int i = 0; i < n; i++)
         {
-            int temp = output[i][col1];
-            output[i][col1] = output[i][col2];
-            output[i][col2] = temp;
+            swap(output.data[i][col1], output.data[i][col2]);
         }
         return output;
     }
@@ -249,7 +245,7 @@ int main()
             }
             else if (matChoice == 2)
             {
-                swapped = matrix1.swapCols(col1, col2);
+                swapped = matrix2.swapCols(col1, col2);
             }
             swapped.printMatrix();
         }
